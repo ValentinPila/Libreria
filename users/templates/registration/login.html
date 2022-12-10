@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <script> 
+            window.location.replace('http://127.0.0.1:8000/'); 
+        </script>
+    {% else %}
+        <body style="background-color: #825804;">    
+            <hr>
+            <div style="vertical-align: middle;">
+                <h1 style="text-align: center;  color: white;">Login</h1>
+                <br>
+                <form action="" method="post" style="text-align: center; color: white;">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <div style="text-align: center;">
+                        <input value="Entrar" type="submit" class="btn btn-dark-outline" style="background-color: #684807;"></input>
+                    </div>
+                    <hr>
+                    <button class="btn btn-dark-outline" style="background-color: #684807;">
+                        <a href="{% url 'password_reset' %}" style="color: white;" class="nav-link">¿Olvido su contraseña?</a>
+                    </button>
+                </form>
+            </div>
+        </body>
+    {% endif %}
+{% endblock %}
